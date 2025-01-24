@@ -21,7 +21,7 @@ RUN go build -o /cron-manager ./cmd/
 # drop build enviroment
 FROM alpine:latest
 
-WORKDIR /app
+WORKDIR /srv
 
 COPY --from=builder /cron-manager .
 COPY ./static ./static
