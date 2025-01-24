@@ -25,6 +25,8 @@ WORKDIR /app
 
 COPY --from=builder /cron-manager .
 
+COPY --from=builder /static ./
+
 EXPOSE 8080
 
 CMD ["./cron-manager"]
