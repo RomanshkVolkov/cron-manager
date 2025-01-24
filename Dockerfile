@@ -24,8 +24,7 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /cron-manager .
-
-COPY --from=builder ./static ./static
+COPY ./static ./static
 
 EXPOSE 8080
 
