@@ -1,0 +1,26 @@
+services:
+  STACK_PLACEHOLDER-app:
+    image: IMAGE_PLACEHOLDER
+    environment:
+      - DB_DSN_MYSQL_ELEVA_CONTABO=DEPLOY_DB_DSN_MYSQL_ELEVA_CONTABO_PLACEHOLDER
+      - DB_DSN_MYSQL_ELEVA=DEPLOY_DB_DSN_MYSQL_ELEVA_PLACEHOLDER
+      - JWT_SECRET=DEPLOY_JWT_SECRET_PLACEHOLDER
+      - MAILER_EMAIL=DEPLOY_MAILER_EMAIL_PLACEHOLDER
+      - MAILER_PASSWORD=DEPLOY_MAILER_PASSWORD_PLACEHOLDER
+      - MAILER_SMTP_HOST=DEPLOY_MAILER_SMTP_HOST_PLACEHOLDER
+      - MAILER_SMTP_PORT=DEPLOY_MAILER_SMTP_PORT_PLACEHOLDER
+      # add more environment variables here same debug.sh and deployment.template.yml
+    networks:
+      - caddy
+    deploy:
+      replicas: 1
+      labels:
+        caddy: CADDY_HOST_PLACEHOLDER
+        caddy.tls: CADDY_TLS_PLACEHOLDER
+        caddy.tls.on_demand:
+        caddy.reverse_proxy: "{{upstreams 8080}}" # important check same value on Dockerfile and PORT enviroment var
+
+
+networks:
+  caddy:
+    external: true
