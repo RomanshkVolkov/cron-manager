@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/big"
+	"regexp"
 	"strings"
 	"time"
 
@@ -171,4 +172,10 @@ func SerializedRowsProcedure(rows *sql.Rows) ([]map[string]any, error) {
 	}
 
 	return result, nil
+}
+
+// SerializeAlphanumericString removes all non-alphanumeric characters from a string
+func SerializeAlphanumericString(field string) string {
+	regExp := regexp.MustCompile("[^a-zA-Z0-9]+")
+	return regExp.ReplaceAllString(field, "")
 }

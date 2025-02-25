@@ -1,6 +1,8 @@
 package repository
 
-import "github.com/RomanshkVolkov/test-api/internal/core/domain"
+import (
+	"github.com/RomanshkVolkov/test-api/internal/core/domain"
+)
 
 func GetContaboData() []domain.Zapier {
 	contaboDB := GetDBConnection("contabo")
@@ -21,6 +23,9 @@ func InsertProductionData(data []domain.Zapier) int {
 	rowInserted := 0
 
 	for _, zapier := range data {
+		zapier.WhatsApp = SerializeAlphanumericString(zapier.WhatsApp)[:15]
+		zapier.PhoneSocialMedia = SerializeAlphanumericString(zapier.PhoneSocialMedia)[:15]
+
 		productionDB.DB.Create(&zapier)
 		rowInserted++
 	}
