@@ -22,9 +22,18 @@ func InsertProductionData(data []domain.Zapier) int {
 	productionDB := GetDBConnection("production")
 	rowInserted := 0
 
+	phoneMaxLen := 15
+
 	for _, zapier := range data {
-		zapier.WhatsApp = SerializeAlphanumericString(zapier.WhatsApp)[:15]
-		zapier.PhoneSocialMedia = SerializeAlphanumericString(zapier.PhoneSocialMedia)[:15]
+		zapier.WhatsApp = SerializeAlphanumericString(zapier.WhatsApp)
+		zapier.PhoneSocialMedia = SerializeAlphanumericString(zapier.PhoneSocialMedia)
+
+		if len(zapier.WhatsApp) > phoneMaxLen {
+			zapier.WhatsApp = zapier.WhatsApp[:phoneMaxLen]
+		}
+		if len(zapier.PhoneSocialMedia) > phoneMaxLen {
+			zapier.PhoneSocialMedia = zapier.PhoneSocialMedia[:phoneMaxLen]
+		}
 
 		productionDB.DB.Create(&zapier)
 		rowInserted++
