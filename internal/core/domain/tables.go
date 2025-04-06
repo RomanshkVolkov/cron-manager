@@ -44,6 +44,11 @@ type Zapier struct {
 	InsertionDate    time.Time `gorm:"type:TIMESTAMP;default:CURRENT_TIMESTAMP;column:insertion_date" json:"insertionDate"`
 }
 
+type BoatyHealingRecord struct {
+	gorm.Model
+	Content string `gorm:"type:MEDIUMTEXT;" json:"content"`
+}
+
 type Zapier_bkp struct {
 	Zapier
 }

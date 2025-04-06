@@ -11,5 +11,6 @@ func JobRoutes(r *gin.Engine) {
 	job := r.Group("/jobs")
 	{
 		job.GET("/eleva-zapier", handler.SyncElevaZapier)
+		job.GET("/boaty-health-checker", handler.SyncBoatyHealthChecker)
 	}
 }

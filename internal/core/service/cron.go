@@ -9,6 +9,7 @@ func InitCron() {
 	c := cron.New()
 
 	c.AddFunc("@every 1m", WrapperFuncs(SyncElevaZapier))
+	c.AddFunc("@every 1m", WrapperFuncs(SyncBoatyHealthChecker))
 
 	c.Start()
 }

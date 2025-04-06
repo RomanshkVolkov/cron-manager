@@ -12,3 +12,9 @@ func SyncElevaZapier(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, response)
 }
+
+func SyncBoatyHealthChecker(c *gin.Context) {
+	response := service.SyncBoatyHealthChecker()
+
+	c.IndentedJSON(http.StatusOK, response)
+}
